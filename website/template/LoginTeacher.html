@@ -1,0 +1,81 @@
+<html>
+    <head>
+
+        <title>Đăng nhập</title>
+        <style>
+            body{
+                font-family: Arial, Helvetica, sans-serif;
+                background-color: rgb(50, 70, 250);
+            }
+            button{
+                background-color: #0124ee;
+                width: 15%;
+                padding: 15px;
+                color: black;
+                border-radius: 25px ;
+                border: darkblue;
+                float: center;
+                font-size: 25px;
+            }
+            label{
+                font-size: 20px;
+                display: inline-block;
+            }
+            form{
+                border: 20px solid #f1f1f1;
+            }
+           input[type=email],input[type=password]{
+                display: inline-block;
+                width: 30%;
+                font-size: inherit;
+                margin: 8px 0px;
+                padding: 12px 20px;
+                
+                border-radius: 25px ;
+                border: 2px solid blue;
+                
+                box-sizing: border-box;
+           }
+
+
+            button:hover{
+                opacity:0.7;
+
+            }
+            .container{
+                padding: 80px;
+                background-color: white;
+            }
+            .imgcontainer {
+                text-align: center;
+                margin: 24px 0 12px 0;
+            }
+              
+            img.avatar {
+                width: 15%;
+                border-radius: 50%;
+            }  
+        </style>
+    </head>
+
+    <body>
+        
+        <center><h1>Đăng nhập tài khoản giảng viên</h1></center>
+        <form action="#" method="post">
+            {% csrf_token %}
+            {% load static %}
+            <center><div class="container">
+                <div class="imgcontainer">
+                    <img src="{% static 'teacher.png' %}" alt="Avatar" class="avatar">
+                  
+                </div>
+                <label for ='email'><b>Email GV</b></label>
+                <input type="email" placeholder="Nhập Email" name="email" float="right"  required><br>  
+                <label for='password'><b>Mật khẩu  </b></label>
+                <input type="password" placeholder="Nhập mật khẩu" name="password" required><br><br>
+                <button type="submit"><b>Đăng nhập</b></button><br><br>
+                 Chưa có tài khoản?  <a href="http://localhost:8000/resTea"> Tạo tài khoản</a>
+            </div></center>
+        </form>
+    </body>
+</html>
