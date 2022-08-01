@@ -40,6 +40,12 @@ INSTALLED_APPS = [
     #thêm vào
     'loginTeacher', 
     'resTea',
+    'resStu',
+    'loginStudent',
+    'loginAdmin',
+    'mainscreen',
+    
+
 ]
 
 MIDDLEWARE = [
