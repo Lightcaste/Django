@@ -18,11 +18,11 @@ def loginStudentAction(request):
                 em=value
             if key=="password":
                 pwd=value
-        c="select * from studentinfo where email= '{}' and password ='{}'".format(em,pwd) #insert là nhập, select là chọn
+        c="select * from studentinfor where email= '{}' and password ='{}'".format(em,pwd) #insert là nhập, select là chọn
         cursor.execute(c)
         t=tuple(cursor.fetchall())
         if t==():
-            return render(request,'error.html')
+            return render(request,'loginStudent.html')
         else:
            # return render(request.get('https://www.youtube.com/watch?v=tytTIoigrd8'))
             return redirect('https://www.youtube.com/watch?v=tytTIoigrd8')

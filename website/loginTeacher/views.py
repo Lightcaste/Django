@@ -10,7 +10,7 @@ pwd=''
 def loginTeacherAction(request):
     global em,pwd
     if request.method=="POST":
-        m=sql.connect(host="localhost",user="root",passwd="1234",database='website',tables='teacherinfor')
+        m=sql.connect(host="localhost",user="root",passwd="1234",database='website')
         cursor=m.cursor()
         d=request.POST
         for key,value in d.items():
@@ -18,11 +18,11 @@ def loginTeacherAction(request):
                 em=value
             if key=="password":
                 pwd=value
-        c="select * from users where email= '{}' and password ='{}'".format(em,pwd) #insert là nhập, select là chọn
+        c="select * from teacherinfor where email= '{}' and password ='{}'".format(em,pwd) #insert là nhập, select là chọn
         cursor.execute(c)
         t=tuple(cursor.fetchall())
         if t==():
-            return render(request,'error.html')
+            return render(request,'loginTeacher.html')
         else:
            # return render(request.get('https://www.youtube.com/watch?v=tytTIoigrd8'))
             return redirect('https://www.youtube.com/watch?v=tytTIoigrd8')

@@ -18,12 +18,16 @@ from django.contrib import admin
 from django.urls import path, include
 from loginTeacher.views import loginTeacherAction
 from loginStudent.views import loginStudentAction
+from loginAdmin.views import loginAdminAction
 from resTea.views import resTeaaction
+from resStu.views import resStuaction
 from mainscreen.views import mainscreen
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('resTea/', resTeaaction),
+    path('resStu/', resStuaction),
     path('loginTeacher/', loginTeacherAction),
+    path('loginAdmin/', loginAdminAction),
     path('loginStudent/', loginStudentAction),
     path('', mainscreen),
 ]
