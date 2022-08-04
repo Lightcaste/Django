@@ -1,0 +1,32 @@
+{% load static %}
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Đăng nhập</title>
+        <link rel="stylesheet" href="{% static 'login/style.css' %}">
+    </head>
+
+    <body>
+        <form action="#" method="post">
+            {% csrf_token %}
+            <center>
+                <br><br><br><br><br>
+                <div class ="container">
+                 <center><h1>Trang đăng nhập tài khoản quản trị viên</h1></center>
+                <div class="imgcontainer">
+                    <img src="{% static 'admin.png' %}" alt="Avatar" class="avatar">
+                </div>
+                <label for ='MSQT'><b></b></label>
+                <input type="MSQT" placeholder="Mã số quản trị" name="MSQT" float="right"  required><br>  
+                <label for='password'><b> </b></label>
+                <input type="password" placeholder="Nhập mật khẩu" name="password" required><br><br>
+                <button type="submit"><b>Đăng nhập</b></button><br><br>
+                <br><a href="http://localhost:8000"> Quay lại trang chính </a>
+            </div></center>
+        </form>
+    </body>
+</html>
+
+
+
+

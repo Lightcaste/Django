@@ -44,12 +44,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
   
     # adder
-    'loginTeacher', 
-    'resTea',
-    'resStu',
-    'loginStudent',
-    'loginAdmin',
-    'mainscreen',
+    'registrations',
+    'login',
+    'main_screen',
     'user_admin',
 
 ]
@@ -69,7 +66,7 @@ ROOT_URLCONF = 'website.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['template'], #thêm vào 'template'
+        'DIRS': ['templates'], #thêm vào 'templates'
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -146,7 +143,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
+    BASE_DIR / "",
 ]
 
 # Default primary key field type

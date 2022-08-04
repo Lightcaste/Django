@@ -1,0 +1,28 @@
+{% load static %}
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Trang chủ</title>
+        <link rel="stylesheet" href="{% static 'main_screen/style.css' %}">
+        
+    </head>
+    <body>      
+        <form action="#" method="post">
+            {% csrf_token %}
+         
+            <center>
+               <br><br><br><br><br>
+               <div class ="container">
+                <center><h1>Chào mừng đến với WEBAPP</h1></center>
+                <button type="submit"><b><a href="http://localhost:8000/login/teacher/"> Đăng nhập tải khoản giảng viên</a</b></button><br>
+                <button type="submit"><b><a href="http://localhost:8000/login/student/"> Đăng nhập tải khoản sinh viên</a</b></button><br>
+                <button type="submit"><b><a href="http://localhost:8000/login/admin/"> Đăng nhập tải khoản quản trị</a</b></button><br>       
+            	
+            </div></center>
+        </form>
+    </body>
+</html>
+
+
+
+

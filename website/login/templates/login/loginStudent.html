@@ -1,0 +1,33 @@
+  {% load static %}
+  <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Đăng nhập</title>
+        <link rel="stylesheet" href="{% static 'login/style.css' %}">
+    </head>
+
+    <body>  
+        <form action="#" method="post">
+            {% csrf_token %}
+            <center>
+                <br><br><br><br><br><div class="container">
+                <center><h1>Đăng nhập tài khoản sinh viên</h1></center>
+                <div class="imgcontainer">
+                    <img src="{% static 'student.png' %}" alt="Avatar" class="avatar"> 
+                </div>
+                <label for ='email'></label>
+                <input type="email" placeholder="Nhập Email Sinh viên" name="email" id="email" float="right"  required><br>  
+                <label for='password'></label>
+                <input type="password" placeholder="Nhập mật khẩu" name="password" required><br><br>
+                <button type="submit"><b>Đăng nhập</b></button><br><br>
+                <center>
+                    <a href="http://localhost:8000/registrations/student"> Chưa có tài khoản? </a>
+                     <br><a  href="http://localhost:8000"> Quay lại trang chính</a> 
+                </div></center>
+            </form>
+        </body>
+    </html>
+
+
+
+
