@@ -3,30 +3,28 @@
 
         <title>Đăng nhập</title>
         <style>
+           
             body{
                 font-family: Arial, Helvetica, sans-serif;
-                background-color: rgb(50, 70, 250);
+                background-color: rgb(48, 113, 187);
             }
             button{
-                background-color: #0124ee;
+                background-color: #125ce4; 
                 width: 15%;
-                padding: 15px;
+                padding: 10px;
                 color: black;
-                border-radius: 25px ;
-                border: darkblue;
+                border: black;
+                border-radius: 25px;
                 float: center;
-                font-size: 25px;
+                font-size: 15px;
             }
             label{
                 font-size: 20px;
-                display: inline-block;
             }
-            form{
-                border: 20px solid #f1f1f1;
-            }
+            
            input[type=email],input[type=password]{
                 display: inline-block;
-                width: 30%;
+                width: 40%;
                 font-size: inherit;
                 margin: 8px 0px;
                 padding: 12px 20px;
@@ -43,8 +41,11 @@
 
             }
             .container{
-                padding: 80px;
-                background-color: white;
+                padding: 10px;
+                width: 800px;
+                background-color: rgb(255, 255, 255);
+                border-radius: 25px;
+                border: 5px solid black;
             }
             .imgcontainer {
                 text-align: center;
@@ -57,24 +58,29 @@
             }  
         </style>
     </head>
-
     <body>
         
-        <center><h1>Đăng nhập tài khoản giảng viên</h1></center>
+        
         <form action="#" method="post">
             {% csrf_token %}
             {% load static %}
-            <center><div class="container">
+            <center><br><br><br><br><br><div class="container">
+                <center><h1>Đăng nhập tài khoản giảng viên</h1></center>
                 <div class="imgcontainer">
                     <img src="{% static 'teacher.png' %}" alt="Avatar" class="avatar">
                   
                 </div>
-                <label for ='email'><b>Email GV</b></label>
-                <input type="email" placeholder="Nhập Email" name="email" float="right"  required><br>  
-                <label for='password'><b>Mật khẩu  </b></label>
-                <input type="password" placeholder="Nhập mật khẩu" name="password" required><br><br>
+                <label for ='email'><b></b></label>
+                <input type="email" placeholder="Nhập Email Giảng viên" name="email" float="right"  required><br>  
+                <label for='password'><b> </b></label>
+                <input type="password" placeholder="Nhập mật khẩu" name="password" required><br>
+              
                 <button type="submit"><b>Đăng nhập</b></button><br><br>
-                 Chưa có tài khoản?  <a href="http://localhost:8000/resTea"> Tạo tài khoản</a>
+               <center>
+                 <a  href="http://localhost:8000/forgotpassTea"> Quên mật khẩu?</a> 
+               
+                 &ensp;&ensp;&ensp;&ensp;<a <a href="http://localhost:8000/resTea"> Chưa có tài khoản?</center>
+                 <br><a  href="http://localhost:8000"> Quay lại trang chính</a> 
             </div></center>
         </form>
     </body>

@@ -22,6 +22,7 @@ from loginAdmin.views import loginAdminAction
 from resTea.views import resTeaaction
 from resStu.views import resStuaction
 from mainscreen.views import mainscreen
+from forgotpassTea.views import forgotpassTeaAction
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('resTea/', resTeaaction),
@@ -29,5 +30,6 @@ urlpatterns = [
     path('loginTeacher/', loginTeacherAction),
     path('loginAdmin/', loginAdminAction),
     path('loginStudent/', loginStudentAction),
+    path('forgotpassTea/', forgotpassTeaAction),
     path('', mainscreen),
 ]
