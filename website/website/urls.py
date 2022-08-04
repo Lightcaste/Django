@@ -22,14 +22,20 @@ from loginAdmin.views import loginAdminAction
 from resTea.views import resTeaaction
 from resStu.views import resStuaction
 from mainscreen.views import mainscreen
-from forgotpassTea.views import forgotpassTeaAction
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # registration 
     path('resTea/', resTeaaction),
     path('resStu/', resStuaction),
+    # login
     path('loginTeacher/', loginTeacherAction),
     path('loginAdmin/', loginAdminAction),
     path('loginStudent/', loginStudentAction),
-    path('forgotpassTea/', forgotpassTeaAction),
-    path('', mainscreen),
+    # main screen
+    path('', include ('mainscreen.urls')),
+    #user_admin
+    path('userAdmin/', include ('user_admin.urls')),
 ]
+    

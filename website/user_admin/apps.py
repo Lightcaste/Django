@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class ForgotpassConfig(AppConfig):
+class UserAdminConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'forgotpass'
+    name = 'user_admin'

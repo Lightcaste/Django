@@ -27,6 +27,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+#thêm vào để làm forgot password
+#if DEBUG:
+#LOGIN_URL='/LOGIN/'
+    
+    
 
 # Application definition
 
@@ -37,14 +42,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #thêm vào
+  
+    # adder
     'loginTeacher', 
     'resTea',
     'resStu',
     'loginStudent',
     'loginAdmin',
     'mainscreen',
-    
+    'user_admin',
 
 ]
 
@@ -82,10 +88,24 @@ WSGI_APPLICATION = 'website.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+#DATABASES = {
+ #   'default': 
+  #  {
+  #      'ENGINE': 'django.db.backends.sqlite3',
+   #     'NAME': BASE_DIR / 'db.sqlite3',
+
+        
+#}
+#}
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'website',
+        'USER': 'root',
+        'PASSWORD': '1234',
+        'HOST': 'localhost',
+        
     }
 }
 
@@ -133,3 +153,6 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
