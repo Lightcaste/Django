@@ -1,4 +1,57 @@
-h1{
-    color:red;
+  h1{
+    color:black;
+
+  }
+
+  body {
+    font-family: Arial;
+    margin: 0;
+  }
+
+  .header {
+    padding: 0px;
+    font-size: 15px;
     background-color: blue;
-}
+  }
+
+  input[type=text] {
+    width: 40%;
+    box-sizing: border-box;
+    
+    display: inline-block;
+    border: 2px solid blue;
+    border-radius: 25px;
+    font-size: inherit;
+    padding: 12px 20px 12px 40px;
+    margin: 8px 10px;
+  }
+  
+  button{
+    background-color: #4687ff; 
+    width: 15%;
+    padding: 10px;
+    color: black;
+    border: black;
+    border-radius: 25px;
+    float: center;
+    font-size: 15px;
+  }
+  table{
+    border:solid blue;
+    counter-reset: tableCount;    
+  }
+
+  .counterCell:before {              
+    content: counter(tableCount); 
+    counter-increment: tableCount; 
+  }
+  td{
+    height: 70px;
+    text-align:center;
+  }
+  th{
+    height: 50px;
+    text-align:center;
+  }
+ 
+  

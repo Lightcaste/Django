@@ -1,9 +1,9 @@
 from django.urls import path
-from .import views
+from django.contrib import admin
+from .views import LoginClass
 
+app_name='login'
 urlpatterns = [
-    path('admin/', views.loginAdmin),
-    path('student/', views.loginStudent),
-    path('teacher/', views.loginTeacher),
+    path('',LoginClass.as_view(), name='login'),
 ]
 

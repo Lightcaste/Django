@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <center> <title>Thông tin Giảng viên</title> </center>
+    <link rel="stylesheet" href="{% static 'user_admin/style.css' %}">
+</head>
+<body>
+    
+    <form action="#" method="post">
+        {% csrf_token %}
+    <div class="header">
+        <h1>Thông tin Giảng viên</h1>
+      </div>
+      <center>
+        <form action="/" method="POST">
+          {% csrf_token %}
+      <input type="text" name="Search" placeholder="Nhập tên giảng viên để tìm kiếm" />
+      <button type="submit" value="Search"><b>Tìm kiếm</b></button> <br><br>
+        </form>
+      <table border ="1" id="table" cellspacing="0" width="1200" >
+      
+        <tr>
+            <th>STT</th>
+            <th>Họ</th>
+            <th>Tên</th>
+            <th>Mã Số giảng viên</th>
+            <th>Email</th>
+            <th>Chỉnh sửa</th>
+        </tr>
+        {% for getdata in TD %}
+       
+        <center>
+        <tr>
+            <td class="counterCell"></td>
+            <td>{{getdata.first_name}}</td>
+            <td>{{getdata.last_name}}</td>
+            <td>{{getdata.IDnumber}}</td>
+            <td>{{getdata.email}}</td>
+            <td>
+              <a href="delete/{{getdata.id}}"onclick="return confirm('Bạn muốn xóa tài khoản giảng viên này?')"> Xóa </a>
+            </td>
+        </tr>
+    </center>
+        {% endfor %}
+    </table>    
+    <br><br>
+   
+  </div>
+          {% if TD.has_other_pages %}
+            <ul class="pagination">
+              {% if TD.has_previous %}
+                <li><a href="?page={{ TD.previous_page_number }}">&laquo;</a></li>
+              {% else %}
+                <li class="disabled"><span>&laquo;</span></li>
+              {% endif %}
+              {% for i in TD.paginator.page_range %}
+                {% if TD.number == i %}
+                  <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                {% else %}
+                  <li><a href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+              {% endfor %}
+              {% if TD.has_next %}
+                <li><a href="?page={{ TD.next_page_number }}">&raquo;</a></li>
+              {% else %}
+                <li class="disabled"><span>&raquo;</span></li>
+              {% endif %}
+            </ul>
+          {% endif %}
+
+
+</body>
+</html>

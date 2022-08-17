@@ -20,11 +20,13 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # main screen
     path('', include ('main_screen.urls')),
-    #user_admin
-    path('userAdmin/', include ('user_admin.urls')),
     #login
     path('login/', include ('login.urls')),
     #registrations
-    path('registrations/', include('registrations.urls')),
+    path('registrations/', include('registrations.urls')),   
+    #user_admin
+    path('userAdmin/', include ('user_admin.urls')),
+    #user_teacher
+    path('userTeacher/', include ('user_teacher.urls')),
 ]
     

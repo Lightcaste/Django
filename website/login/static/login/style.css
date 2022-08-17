@@ -18,7 +18,7 @@
                 font-size: 20px;
             }
             
-           input[type=MSQT],input[type=password],input[type=email]{
+           input[type=MSQT],input[type=password],input[type=text]{
                 display: inline-block;
                 width: 30%;
                 font-size: inherit;

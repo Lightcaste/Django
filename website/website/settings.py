@@ -43,11 +43,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
   
+  
     # adder
     'registrations',
     'login',
     'main_screen',
     'user_admin',
+    'user_teacher',
+   
 
 ]
 
@@ -66,7 +69,7 @@ ROOT_URLCONF = 'website.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'], #thêm vào 'templates'
+        'DIRS': [], #thêm vào 'templates'
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -103,6 +106,7 @@ DATABASES = {
         'PASSWORD': '1234',
         'HOST': 'localhost',
         
+        
     }
 }
 
@@ -129,6 +133,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
+#thêm zô
+AUTH_USER_MODEL='user_admin.MyUser'
+
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -145,7 +152,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "",
 ]
-
+AUTHENTICATION_BACKENDS = (
+    ('django.contrib.auth.backends.ModelBackend'),
+)
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 

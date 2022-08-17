@@ -1,79 +1,35 @@
-# login for admin
-
 from django.http import HttpResponse
 from msilib.schema import tables
+from user_admin.models import MyUser
+from django.views import View
 from django.shortcuts import redirect, render
-import mysql.connector as sql
+#import mysql.connector as sql
+from django.contrib.auth import authenticate, login
 
-id=''
-pwd=''
-em=''
-def loginAdmin(request):
-    global id,pwd
-    if request.method=="POST":
-        m=sql.connect(host="localhost",user="root",passwd="1234",database='website')
-        cursor=m.cursor()
-        d=request.POST
-        for key,value in d.items():
-            if key=="MSQT":
-                id=value
-            if key=="password":
-                pwd=value
-        c="select * from adinfor where MSQT= '{}' and password ='{}'".format(id,pwd) 
-        cursor.execute(c)
-        t=tuple(cursor.fetchall())
-        if t==():
-            return render(request,'login/loginAdmin.html')
+class LoginClass(View):
+    def get(self, request):
+        return render (request,'login/loginAll.html')
+
+    def post(self, request):
+        USERNAME=request.POST.get('username')
+        PASSWORD=request.POST.get('password')
+        ROLE=request.POST.get('role')      
+        my_user=authenticate(username=USERNAME, password=PASSWORD)
+        if my_user is None:
+            return HttpResponse("Dang nhap that con me no bai")
+        
+        user=MyUser.objects.get(pk=USERNAME)
+        role=user.role
+        if ROLE==role:
+            if ROLE=='A':
+                login(request, my_user)
+                #return render (request,'user_admin/all.html')
+                return redirect('http://localhost:8000/userAdmin') 
+            if ROLE=='S':
+                login(request, my_user)
+                return HttpResponse("day la trang sinh vien")    
+            if ROLE=='T':
+                login(request, my_user)
+                return HttpResponse("day la trang giang vien")   
         else:
-           # return render(request.get('https://www.youtube.com/watch?v=tytTIoigrd8'))
-            return redirect('https://www.youtube.com/watch?v=tytTIoigrd8')
-    return render(request,'login/loginAdmin.html')    
-
-
-    # Login for student
-
-def loginStudent(request):
-    global em,pwd
-    if request.method=="POST":
-        m=sql.connect(host="localhost",user="root",passwd="1234",database='website')
-        cursor=m.cursor()
-        d=request.POST
-        for key,value in d.items():
-            if key=="email":
-                em=value
-            if key=="password":
-                pwd=value
-        c="select * from studentinfor where email= '{}' and password ='{}'".format(em,pwd) 
-        cursor.execute(c)
-        t=tuple(cursor.fetchall())
-        if t==():
-            return render(request,'login/loginStudent.html')
-        else:
-           # return render(request.get('https://www.youtube.com/watch?v=tytTIoigrd8'))
-            return redirect('https://www.youtube.com/watch?v=tytTIoigrd8')
-    return render(request,'login/loginStudent.html')  
-
-
-
-    #login for teacher
-    
-def loginTeacher(request):
-    global em,pwd
-    if request.method=="POST":
-        m=sql.connect(host="localhost",user="root",passwd="1234",database='website')
-        cursor=m.cursor()
-        d=request.POST
-        for key,value in d.items():
-            if key=="email":
-                em=value
-            if key=="password":
-                pwd=value
-        c="select * from teacherinfor where email= '{}' and password ='{}'".format(em,pwd) 
-        cursor.execute(c)
-        t=tuple(cursor.fetchall())
-        if t==():
-            return render(request,'login/loginTeacher.html')
-        else:
-           # return render(request.get('https://www.youtube.com/watch?v=tytTIoigrd8'))
-            return redirect('https://www.youtube.com/watch?v=tytTIoigrd8')
-    return render(request,'login/loginTeacher.html')    
+            return HttpResponse("sai vai tro")
