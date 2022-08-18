@@ -1,0 +1,75 @@
+{% load static %}
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Trang Chỉnh sửa thông tin</title>
+        <link rel="stylesheet" href="{% static 'user_teacher/style.css' %}">  
+    </head>
+<body>     
+        <header class="header" > 
+
+                <button class="openbtn" onclick="openNav()">☰</button>  
+                <a class="center"> Chỉnh sửa thông tin Giảng viên </a>
+                <a class="name" > {{firstname}} {{lastname}} - {{MSGV}} </a>
+        </header>
+<div id="mySidebar" class="sidebar" >
+  <a href="{% url 'user_teacher:main_screen' %}" >Trang chính </a>
+ 
+  <a href="{% url 'user_teacher:show_student' %}">Sinh viên</a>
+  <a href="{% url 'user_teacher:create-question' %}">Tạo câu hỏi</a>
+  <a href="#">Ngân hàng câu hỏi</a>
+  <a href="{% url 'user_admin:logout' %}">Đăng xuất</a>
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" > <<<  </a>
+</div>
+
+<div id="main">
+    <br><br><br><br><br><br>
+    <div class="table-1">
+        <div class="box-1">
+          <p>Họ</p><br>
+          <p>Tên</p><br>
+          <p>Tên đăng nhập</p><br>
+          <p>Mã số giảng viên</p><br>
+          <p>Email</p><br>
+        </div>
+        <div class="box-2">
+            <label for='first_name'><b></b></label>
+		    <input type='text' placeholder={{firstname}} name='first_name' maxlength = "45" required><br><br>
+
+            <label for='last_name'><b></b></label>
+		    <input type='text' placeholder={{lastname}} name='last_name' maxlength = "45" required><br><br>
+            
+            <label for='username'><b></b></label>
+		    <input type='text' placeholder={{username}} name='username' maxlength = "45" required><br><br>
+
+            <label for='IDnumber'><b></b></label>
+		    <input type='text' placeholder= {{MSGV}} name='IDnumber' maxlength = "45" required><br><br>
+
+            <label for='email'><b></b></label>
+		    <input type='email' placeholder={{email}} name='email' maxlength = "45" required><br><br>
+        </div>
+    </div>
+</div>
+<center>
+    &nbsp;  &nbsp;  &nbsp;  &nbsp; <button type="submit"><b>Thay đổi</b></button><br>     
+</center>
+<script>
+function openNav() {
+  document.getElementById("mySidebar").style.width = "130px";
+  document.getElementById("main").style.marginLeft = "200px";
+
+}
+
+function closeNav() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
+</script>
+   
+</body>
+<footer class="header" > 
+    <a> copyright </a>
+   
+</footer>
+</html> 
+ 

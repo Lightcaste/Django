@@ -15,9 +15,9 @@
                <br><br><br><br><br>
                <div class ="container">
                 <center><h1>Chào mừng đến với WEBAPP</h1></center>
-                <button type="submit"><b><a href="http://localhost:8000/userAdmin/tableTeacher/"> Thông tin Giảng viên</a</b></button><br>
-                <button type="submit"><b><a href="http://localhost:8000/userAdmin/tableStudent/"> Thông tin Sinh viên</a</b></button><br>
-                <button type="submit"><b><a href="http://localhost:8000/userAdmin/logout"> Đăng xuất</a</b></button><br>       
+                <button type="submit"><b><a href="{% url 'user_admin:table_teacher' %}"> Thông tin Giảng viên</a</b></button><br>
+                <button type="submit"><b><a href="{% url 'user_admin:table_student' %}"> Thông tin Sinh viên</a</b></button><br>
+                <button type="submit"><b><a href="{% url 'user_admin:logout' %}"> Đăng xuất</a</b></button><br>       
             	
             </div></center>
         </form>

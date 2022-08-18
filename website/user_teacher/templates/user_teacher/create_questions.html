@@ -1,0 +1,63 @@
+{% load static %}
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Trang Giảng viên</title>
+        <link rel="stylesheet" href="{% static 'user_teacher/style.css' %}">  
+    </head>
+<body>     
+        <header class="header" > 
+
+                <button class="openbtn" onclick="openNav()">☰</button>  
+                <a class="center"> Thông tin Giảng viên </a>
+                <a class="name" > {{firstname}} {{lastname}} - {{MSGV}} </a>
+        </header>
+<div id="mySidebar" class="sidebar" >
+  <a href="{% url 'user_teacher:teacher_change_information' %}" >Chỉnh sửa thông tin</a>
+  <a href="{% url 'user_teacher:show_student' %}">Sinh viên</a>
+  <a href="{% url 'user_teacher:create-question' %}">Tạo câu hỏi</a>
+  <a href="#">Ngân hàng câu hỏi</a>
+  <a href="{% url 'user_admin:logout' %}">Đăng xuất</a>
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" > <<<  </a>
+</div>
+
+<div id="main">
+    <br><br><br><br><br><br>
+    <div class="table-1">
+        <div class="box-1">
+          <p>Họ</p><br>
+          <p>Tên</p><br>
+          <p>Tên đăng nhập</p><br>
+          <p>Mã số giảng viên</p><br>
+          <p>Email</p><br>
+        </div>
+        <div class="box-2">
+            <p class="box"> {{firstname}}</p> <br>
+            <p class="box"> {{lastname}}</p> <br>
+            <p class="box"> {{username}}</p> <br>
+            <p class="box"> {{MSGV}}</p> <br>
+            <p class="box"> {{email}}</p> <br>
+        </div>
+    </div>
+</div>
+
+<script>
+function openNav() {
+  document.getElementById("mySidebar").style.width = "130px";
+  document.getElementById("main").style.marginLeft = "200px";
+
+}
+
+function closeNav() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
+</script>
+   
+</body>
+<footer class="header" > 
+    <a> copyright </a>
+   
+</footer>
+</html> 
+ 

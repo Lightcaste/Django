@@ -24,12 +24,12 @@ class LoginClass(View):
             if ROLE=='A':
                 login(request, my_user)
                 #return render (request,'user_admin/all.html')
-                return redirect('http://localhost:8000/userAdmin') 
+                return redirect('user_admin:admin_main') 
             if ROLE=='S':
                 login(request, my_user)
                 return HttpResponse("day la trang sinh vien")    
             if ROLE=='T':
                 login(request, my_user)
-                return HttpResponse("day la trang giang vien")   
+                return redirect('user_teacher:main_screen')   
         else:
             return HttpResponse("sai vai tro")

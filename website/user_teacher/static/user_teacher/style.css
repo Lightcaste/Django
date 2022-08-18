@@ -1,0 +1,169 @@
+body {
+    font-family: "Lato", sans-serif;
+    margin:0; 
+    padding:0;
+    
+  }
+  
+  .sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background: #125ce4;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 50px;
+    
+  }
+  
+  .sidebar a {
+    padding: 24px;
+    text-decoration: none;
+    font-size: 18px;
+    background: #125ce4;
+    display: block;
+    transition: 0.3s;
+    
+  }
+  
+  .sidebar a:hover {
+    color: #000000;
+  }
+  
+  .openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background: #125ce4;
+    color: rgb(0, 0, 0);
+    padding: 10px 15px;
+   
+  
+  }
+  
+  .openbtn:hover {
+    background: #125ce4;
+    top: 5;
+    left: 0;
+  }
+  
+  #main {
+    transition: margin-left .5s;
+    padding: 16px;
+  }
+  
+  @media screen and (max-height: 450px) {
+    .sidebar {padding-top: 15px;}
+    .sidebar a {font-size: 18px;}
+  }
+
+  .name {
+     position: absolute;
+     top: 10;
+     right: 15;
+     font-size: 20px;
+   }
+   
+   .center {
+    position: absolute;
+    top: 10;
+    left: 650;
+    font-size: 20px;
+    text-align: center;
+  }
+  
+  .header {
+    background-color: #125ce4;
+    color: rgb(0, 0, 0);
+  }
+
+  a{
+    color: black;
+  }
+
+  .box{
+    border:1px solid blue;
+    border-radius: 25px;
+    padding:10px;
+    margin: 5px;
+    width: 400px;
+    text-align: center;
+  }
+   
+  .table-1 {
+    display: flex;
+    justify-content: center;
+  }
+  .box-1 {
+    width: 15%;
+    height: 400px;
+    float: left;
+    text-align: center;
+   
+  }
+  .box-2 {
+    width: 32%;
+    height: 400px;
+    overflow: visible;
+  }
+  footer {
+
+    background-color: black;
+ 
+    color: white;
+ 
+    padding: 0.5em;
+ 
+    position:fixed;
+ 
+    left:0px;
+ 
+    bottom:0px;
+ 
+    height:30px;
+ 
+    width:100%;
+    
+    text-align: center;
+ }
+
+ input[type=email],input[type=text]{
+    border:1px solid blue;
+    border-radius: 25px;
+    padding:10px;
+    margin: 5px;
+    width: 400px;
+    text-align: center;
+ }
+  
+ button{
+  background-color: #125ce4; 
+  width: 15%;
+  padding: 10px;
+  color: black;
+  border: black;
+  border-radius: 25px;
+  float: center;
+  font-size: 15px;
+ }
+
+ table{
+  border:solid blue;
+  counter-reset: tableCount;    
+}
+
+.counterCell:before {              
+  content: counter(tableCount); 
+  counter-increment: tableCount; 
+}
+td{
+  height: 70px;
+  text-align:center;
+}
+th{
+  height: 50px;
+  text-align:center;
+}
+
