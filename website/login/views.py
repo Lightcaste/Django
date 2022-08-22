@@ -16,8 +16,8 @@ class LoginClass(View):
         ROLE=request.POST.get('role')      
         my_user=authenticate(username=USERNAME, password=PASSWORD)
         if my_user is None:
-            return HttpResponse("Dang nhap that con me no bai")
-        
+           # return HttpResponse("Dang nhap that con me no bai")
+            return redirect('login:login') 
         user=MyUser.objects.get(pk=USERNAME)
         role=user.role
         if ROLE==role:
@@ -27,9 +27,10 @@ class LoginClass(View):
                 return redirect('user_admin:admin_main') 
             if ROLE=='S':
                 login(request, my_user)
-                return HttpResponse("day la trang sinh vien")    
+                return redirect('user_student:main_screen')    
             if ROLE=='T':
                 login(request, my_user)
                 return redirect('user_teacher:main_screen')   
         else:
-            return HttpResponse("sai vai tro")
+            #return HttpResponse("sai vai tro")
+            return redirect('login:login') 

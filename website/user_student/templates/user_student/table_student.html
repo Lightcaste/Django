@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Danh sách sinh viên</title>
-    <link rel="stylesheet" href="{% static 'user_teacher/style-table-student.css' %}">  
+    <link rel="stylesheet" href="{% static 'user_student/style-table-student.css' %}">  
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
@@ -22,23 +22,12 @@
                 <h3>Danh sách sinh viên {{firstname}} {{lastname}}</h3>
             </div>
             <ul class="list-unstyled components">
-                <li class="active"> <a href="{% url 'user_teacher:main_screen' %}">Trang thông tin</a></li>
-                <li class="active"> <a href="{% url 'user_teacher:teacher_change_information' %}" >Chỉnh sửa thông tin</a></li>
-                <li class="active"> <a href="{% url 'user_teacher:show_student' %}">Sinh viên</a> </li>
-                <li class="active">
-                  <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Tạo câu hỏi</a>
-                  <ul class="collapse list-unstyled" id="homeSubmenu">
-                      <li>
-                        <a href="{% url 'user_teacher:create-question' %}">Tạo 1 câu hỏi</a>
-                      </li>
-                      <li>
-                          <a href="#">Tạo nhiều câu hỏi</a>
-                      </li>
-                  </ul>
-              </li>
-                <li class="active"> <a href="#">Ngân hàng câu hỏi</a> </li>
-                <li class="active"> <a href="{% url 'user_admin:logout' %}">Đăng xuất</a> </li>
-            </ul>  
+              <li class="active"> <a href="{% url 'user_student:main_screen' %}">Trang thông tin</a></li>
+              <li class="active"> <a href="{% url 'user_student:student_change_information' %}" >Chỉnh sửa thông tin</a></li>
+              <li class="active"> <a href="{% url 'user_student:show_student' %}">Các bài thi cũ</a> </li>
+              <li class="active"> <a href="{% url 'user_student:new-exam' %}">Bắt đầu thi mới</a> </li>
+              <li class="active"> <a href="{% url 'user_admin:logout' %}">Đăng xuất</a> </li>
+          </ul>   
         </nav>
         
         <!-- Page Content  -->
@@ -51,12 +40,12 @@
                     <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fas fa-align-justify"></i>
                     </button>
-                    <b><a> {{firstname}} {{lastname}} - {{MSGV}} </a></b>
+                    <b><a> {{firstname}} {{lastname}} - {{MSSV}} </a></b>
                 </div>
             </nav>
             <div>
                 <center>
-                  <form action="/" method="POST">
+                  <form action="" method="POST">
                     {% csrf_token %}
                 <input type="text" name="Search" placeholder="Nhập tên sinh viên để tìm kiếm" />
                 <button type="submit" value="Search"><b>Tìm kiếm</b></button> <br><br>
@@ -90,27 +79,30 @@
               <br><br>
              
             </div>
-                    {% if SD.has_other_pages %}
-                      <ul class="pagination">
-                        {% if SD.has_previous %}
-                          <li><a href="?page={{ SD.previous_page_number }}">&laquo;</a></li>
-                        {% else %}
-                          <li class="disabled"><span>&laquo;</span></li>
-                        {% endif %}
-                        {% for i in SD.paginator.page_range %}
-                          {% if SD.number == i %}
-                            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-                          {% else %}
-                            <li><a href="?page={{ i }}">{{ i }}</a></li>
-                          {% endif %}
-                        {% endfor %}
-                        {% if SD.has_next %}
-                          <li><a href="?page={{ SD.next_page_number }}">&raquo;</a></li>
-                        {% else %}
-                          <li class="disabled"><span>&raquo;</span></li>
-                        {% endif %}
-                      </ul>
+            <nav aria-label="Page navigation example">
+              {% if SD.has_other_pages %}
+                <ul class="pagination">
+                  {% if SD.has_previous %}
+                  <li class="page-item"><a class="page-link" href="?page={{ SD.previous_page_number }}">&laquo;</a></li>
+                  {% else %}
+                    <li class="page-link"><span>&laquo;</span></li>
+                  {% endif %}
+                  {% for i in SD.paginator.page_range %}
+                    {% if SD.number == i %}
+                      <li class="page-link"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                    {% else %}
+                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
                     {% endif %}
+                  {% endfor %}
+                  {% if SD.has_next %}
+                     <li class="page-item"><a class="page-link" href="?page={{ SD.next_page_number }}">&raquo;</a></li>
+                  {% else %}
+                    <li class="page-link"><span>&raquo;</span></li>
+                  {% endif %}
+                </ul>
+              {% endif %}
+            </nav>
+          </center>
           
           
                     

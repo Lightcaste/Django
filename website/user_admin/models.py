@@ -64,19 +64,22 @@ class CorrectAnswer(models.Model):
         class Meta:
             db_table='correct_answer'
 
-# Đề thi
 class Exam(models.Model):
         Date=models.DateTimeField(auto_now=True)
         ID_Subject=models.ForeignKey(Subject, on_delete=models.CASCADE)
-        MSSV=models.ForeignKey(MyUser, on_delete=models.CASCADE)
+        User_Student=models.ForeignKey(MyUser, on_delete=models.CASCADE)
+        number_question=models.IntegerField(default=None)
+        flag=models.CharField(max_length=255, default=None)
         class Meta:
             db_table='exam'
 # Đáp án thí sinh
 class Students_Answer(models.Model):
-        ID=models.IntegerField(primary_key=True)
         ID_Question=models.ForeignKey(QuestionBank, on_delete=models.CASCADE)
         ID_Exam=models.ForeignKey(Exam, on_delete=models.CASCADE)
         Students_Answer=models.IntegerField()
+        Question_Detail = models.TextField(max_length=99999, default=None)
+        Answer_Detail = models.TextField(max_length=99999, default=None)
+        flag = models.CharField(max_length=255, default=None)
         class Meta:
             db_table='student_answer'
             unique_together=(("ID_Question","ID_Exam"),)
@@ -84,8 +87,17 @@ class Students_Answer(models.Model):
 class Grade(models.Model):
         ID_Exam=models.ForeignKey(Exam, on_delete=models.CASCADE, null=True)
         Grade=models.CharField(max_length=10)
+        number_question = models.IntegerField(default=None)
+        number_correct_question = models.IntegerField(default=None)
+
+        username = models.CharField(max_length=50, default=None)
+        last_name = models.CharField(max_length=255, default=None)
+        first_name = models.CharField(max_length=255, default=None)
+        MSSV = models.CharField(max_length=255, default=None)
+        exam_subject= models.TextField(max_length=255, default=None)
+        Date = models.DateTimeField(default=None)
+
         class Meta:
             db_table='grade'
-
 
 

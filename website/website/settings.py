@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'main_screen',
     'user_admin',
     'user_teacher',
+    'user_student',
    
 
 ]

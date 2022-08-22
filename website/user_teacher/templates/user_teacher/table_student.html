@@ -56,7 +56,7 @@
             </nav>
             <div>
                 <center>
-                  <form action="/" method="POST">
+                  <form action="" method="POST">
                     {% csrf_token %}
                 <input type="text" name="Search" placeholder="Nhập tên sinh viên để tìm kiếm" />
                 <button type="submit" value="Search"><b>Tìm kiếm</b></button> <br><br>
@@ -90,29 +90,31 @@
               <br><br>
              
             </div>
-                    {% if SD.has_other_pages %}
-                      <ul class="pagination">
-                        {% if SD.has_previous %}
-                          <li><a href="?page={{ SD.previous_page_number }}">&laquo;</a></li>
-                        {% else %}
-                          <li class="disabled"><span>&laquo;</span></li>
-                        {% endif %}
-                        {% for i in SD.paginator.page_range %}
-                          {% if SD.number == i %}
-                            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+            <center>
+              <nav aria-label="Page navigation example">
+                      {% if SD.has_other_pages %}
+                        <ul class="pagination">
+                          {% if SD.has_previous %}
+                          <li class="page-item"><a class="page-link" href="?page={{ SD.previous_page_number }}">&laquo;</a></li>
                           {% else %}
-                            <li><a href="?page={{ i }}">{{ i }}</a></li>
+                            <li class="page-link"><span>&laquo;</span></li>
                           {% endif %}
-                        {% endfor %}
-                        {% if SD.has_next %}
-                          <li><a href="?page={{ SD.next_page_number }}">&raquo;</a></li>
-                        {% else %}
-                          <li class="disabled"><span>&raquo;</span></li>
-                        {% endif %}
-                      </ul>
-                    {% endif %}
-          
-          
+                          {% for i in SD.paginator.page_range %}
+                            {% if SD.number == i %}
+                              <li class="page-link"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                            {% else %}
+                            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                            {% endif %}
+                          {% endfor %}
+                          {% if SD.has_next %}
+                             <li class="page-item"><a class="page-link" href="?page={{ SD.next_page_number }}">&raquo;</a></li>
+                          {% else %}
+                            <li class="page-link"><span>&raquo;</span></li>
+                          {% endif %}
+                        </ul>
+                      {% endif %}
+                    </nav>
+                  </center>
                     
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

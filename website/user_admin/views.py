@@ -22,6 +22,8 @@ def Admin_main(request):
 @decorators.login_required(login_url='/login/')
 def showTeacher(request):
     role=request.user.role
+    lastname=request.user.last_name
+    firstname=request.user.first_name
     if role != 'A':
         return redirect('user_admin:logout')
     else:
@@ -30,17 +32,17 @@ def showTeacher(request):
             TD=MyUser.objects.filter(last_name__icontains= Search) 
         else:
             TD=MyUser.objects.filter(role='T')
-            paginator = Paginator(TD, 6) 
+            paginator = Paginator(TD, 5) 
             page_number = request.GET.get('page')
             TD = paginator.get_page(page_number)
             #return render(request, 'user_admin/table_teacher.html', {'TD' : TD})
-    return render(request, 'user_admin/table_teacher.html', {'TD' : TD})
+    return render(request, 'user_admin/table_teacher.html', {'TD' : TD}|{'lastname':lastname}|{'firstname':firstname})
 
             
 
 @decorators.login_required(login_url='/login/')
-def delete(request, id):
-    TD=MyUser.objects.get(id=id)
+def delete(request, username):
+    TD=MyUser.objects.get(pk=username)
     TD.delete()
     return redirect('/userAdmin/tableTeacher')
 
@@ -48,6 +50,8 @@ def delete(request, id):
 @decorators.login_required(login_url='/login/')
 def showStudent(request):
     role=request.user.role
+    lastname=request.user.last_name
+    firstname=request.user.first_name
     if role != 'A':
         return redirect('user_admin:logout')
     else:
@@ -56,14 +60,14 @@ def showStudent(request):
             SD=MyUser.objects.filter(last_name__icontains= Search)
         else:
             SD=MyUser.objects.filter(role='S')
-        paginator = Paginator(SD, 6) 
+        paginator = Paginator(SD, 5) 
         page_number = request.GET.get('page')
         SD = paginator.get_page(page_number)
-    return render(request, 'user_admin/table_student.html', {'SD' : SD})
+    return render(request, 'user_admin/table_student.html', {'SD' : SD}|{'lastname':lastname}|{'firstname':firstname})
 
 @decorators.login_required(login_url='/login/')
-def deleteSD(request, id):
-    SD=MyUser.objects.get(id=id)
+def deleteSD(request, username):
+    SD=MyUser.objects.get(pk=username)
     SD.delete()
     return redirect('/userAdmin/tableStudent')
 
