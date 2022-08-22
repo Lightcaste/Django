@@ -28,5 +28,7 @@ urlpatterns = [
     path('userAdmin/', include ('user_admin.urls')),
     #user_teacher
     path('userTeacher/', include ('user_teacher.urls')),
+    #user_student
+    path('userStudent/', include ('user_student.urls')),
 ]
     
