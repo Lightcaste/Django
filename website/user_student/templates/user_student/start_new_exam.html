@@ -1,0 +1,11 @@
+{% extends 'user_student/base.html' %}
+
+{% block content %}
+    <h3>Chọn môn thi và số câu để bắt đầu bài thi mới</h3>
+    <form action="" method="post">
+        {% csrf_token %}
+        <h2>Môn thi: {{ fm.ID_Subject }}</h2>
+        <h2>Số câu: {{fm.number_question}}</h2>
+        <input type="submit" value="Chọn">
+    </form>
+{% endblock %}

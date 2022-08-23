@@ -1,145 +1,68 @@
-<!DOCTYPE html>
-{% load static %}
+{% extends 'user_teacher/base.html' %}
+{%block content%}
+<title>Sinh viên</title>
 
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Danh sách sinh viên</title>
-    <link rel="stylesheet" href="{% static 'user_teacher/style-table-student.css' %}">  
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-</head>
-
-<body>
-    <div class="wrapper">
-        <!-- Sidebar  -->
-        <nav id="sidebar">
-            <div class="sidebar-header">
-                <h3>Giảng viên {{firstname}} {{lastname}}</h3>
-            </div>
-            <ul class="list-unstyled components">
-                <li class="active"> <a href="{% url 'user_teacher:main_screen' %}">Trang thông tin</a></li>
-                <li class="active"> <a href="{% url 'user_teacher:teacher_change_information' %}" >Chỉnh sửa thông tin</a></li>
-                <li class="active"> <a href="{% url 'user_teacher:show_student' %}">Sinh viên</a> </li>
-                <li class="active">
-                  <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Tạo câu hỏi</a>
-                  <ul class="collapse list-unstyled" id="homeSubmenu">
-                      <li>
-                        <a href="{% url 'user_teacher:create-question' %}">Tạo 1 câu hỏi</a>
-                      </li>
-                      <li>
-                          <a href="#">Tạo nhiều câu hỏi</a>
-                      </li>
-                  </ul>
-              </li>
-                <li class="active"> <a href="#">Ngân hàng câu hỏi</a> </li>
-                <li class="active"> <a href="{% url 'user_admin:logout' %}">Đăng xuất</a> </li>
-            </ul>  
+<div>
+    <center>
+      <form action="" method="POST">
+        {% csrf_token %}
+    <input type="text" name="Search" placeholder="Nhập tên sinh viên hoặc môn để tìm kiếm" />
+    <button type="submit" value="Search"><b>Tìm kiếm</b></button> <br><br>
+      </form>
+    <table border ="1" id="table" cellspacing="0" width="1200" >
+    
+      <tr>
+          <th>STT</th>
+          <th>Họ</th>
+          <th>Tên</th>
+          <th>Mã Số Sinh Viên</th>
+          <th>Mã đề thi</th>
+          <th>Tên môn thi</th>
+          <th>Ngày thi</th>
+          <th>Điểm</th>
+      </tr>
+      {% for getdata in SD %}
+     
+      <center>
+      <tr>
+          <td class="counterCell"></td>
+          <td>{{getdata.first_name}}</td>
+          <td>{{getdata.last_name}}</td>
+          <td>{{getdata.MSSV}}</td>
+          <td>{{getdata.ID_Exam_id}}</td>
+          <td>{{getdata.exam_subject}}</td>
+          <td>{{getdata.Date}}</td>
+          <td>{{getdata.Grade}}</td>
+      </tr>
+  </center>
+      {% endfor %}
+  </table>    
+  <br><br>
+ 
+</div>
+<center>
+  <nav aria-label="Page navigation example">
+          {% if SD.has_other_pages %}
+            <ul class="pagination">
+              {% if SD.has_previous %}
+              <li class="page-item"><a class="page-link" href="?page={{ SD.previous_page_number }}">&laquo;</a></li>
+              {% else %}
+                <li class="page-link"><span>&laquo;</span></li>
+              {% endif %}
+              {% for i in SD.paginator.page_range %}
+                {% if SD.number == i %}
+                  <li class="page-link"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                {% else %}
+                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+              {% endfor %}
+              {% if SD.has_next %}
+                 <li class="page-item"><a class="page-link" href="?page={{ SD.next_page_number }}">&raquo;</a></li>
+              {% else %}
+                <li class="page-link"><span>&raquo;</span></li>
+              {% endif %}
+            </ul>
+          {% endif %}
         </nav>
-        
-        <!-- Page Content  -->
-        <div id="content">
-          <nav class="navbar navbar-light" style="background-color: #125ce4;">
-            <div class="container-fluid">
-                    <button type="button" id="sidebarCollapse" class="btn btn-info">
-                        <i class="fas fa-align-left"></i>
-                    </button>
-                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="fas fa-align-justify"></i>
-                    </button>
-                    <b><a> {{firstname}} {{lastname}} - {{MSGV}} </a></b>
-                </div>
-            </nav>
-            <div>
-                <center>
-                  <form action="" method="POST">
-                    {% csrf_token %}
-                <input type="text" name="Search" placeholder="Nhập tên sinh viên để tìm kiếm" />
-                <button type="submit" value="Search"><b>Tìm kiếm</b></button> <br><br>
-                  </form>
-                <table border ="1" id="table" cellspacing="0" width="1200" >
-                
-                  <tr>
-                      <th>STT</th>
-                      <th>Họ</th>
-                      <th>Tên</th>
-                      <th>Mã Số Sinh Viên</th>
-                      <th>Email</th>
-                      <th>Chỉnh sửa</th>
-                  </tr>
-                  {% for getdata in SD %}
-                 
-                  <center>
-                  <tr>
-                      <td class="counterCell"></td>
-                      <td>{{getdata.first_name}}</td>
-                      <td>{{getdata.last_name}}</td>
-                      <td>{{getdata.IDnumber}}</td>
-                      <td>{{getdata.email}}</td>
-                      <td>
-                        <a href="delete/{{getdata.id}}"onclick="return confirm('Bạn muốn xóa tài khoản sinh viên này?')"> Xóa </a>
-                      </td>
-                  </tr>
-              </center>
-                  {% endfor %}
-              </table>    
-              <br><br>
-             
-            </div>
-            <center>
-              <nav aria-label="Page navigation example">
-                      {% if SD.has_other_pages %}
-                        <ul class="pagination">
-                          {% if SD.has_previous %}
-                          <li class="page-item"><a class="page-link" href="?page={{ SD.previous_page_number }}">&laquo;</a></li>
-                          {% else %}
-                            <li class="page-link"><span>&laquo;</span></li>
-                          {% endif %}
-                          {% for i in SD.paginator.page_range %}
-                            {% if SD.number == i %}
-                              <li class="page-link"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-                            {% else %}
-                            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
-                            {% endif %}
-                          {% endfor %}
-                          {% if SD.has_next %}
-                             <li class="page-item"><a class="page-link" href="?page={{ SD.next_page_number }}">&raquo;</a></li>
-                          {% else %}
-                            <li class="page-link"><span>&raquo;</span></li>
-                          {% endif %}
-                        </ul>
-                      {% endif %}
-                    </nav>
-                  </center>
-                    
-    <!-- jQuery CDN - Slim version (=without AJAX) -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <!-- Popper.JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#sidebarCollapse').on('click', function () {
-                $('#sidebar').toggleClass('active');
-            });
-        });
-
-
-       
-    </script>
-</body>
-<footer class="bg-light text-center text-lg-start">
-    <!-- Copyright -->
-    <div class="text-center p-3" style="background-color: #125ce4;"  position: "absolute";
-    >
-      © 2022 Copyright
-    </div>
-    <!-- Copyright -->
-  </footer>
-</html>
+      </center>
+        {%endblock%}

@@ -1,0 +1,14 @@
+{% extends 'user_teacher/base.html' %}
+
+{% block content %}
+<title>Ngân hàng câu hỏi</title>
+
+    <center><h3>Ngân hàng câu hỏi</h3></center>
+    {% if listquest %}
+       {% for item in listquest %}
+        <p>[ID:{{item.id }}] <a class="box" href="{% url 'user_teacher:detailview' item.id %}">{{ item.Question_Detail}}</a></p>
+        {% endfor %}
+    {% else %}
+        <h3 style="color: red;">Không có dữ liệu câu hỏi nào !!!</h3>
+    {% endif %}
+{% endblock %}

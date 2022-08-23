@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 {% load static %}
 
@@ -7,10 +8,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Trang thông tin sinh viên</title>
-    <link rel="stylesheet" href="{% static 'user_student/style-new-exam.css' %}">  
+    <link rel="stylesheet" href="{% static 'user_teacher/style-create-question.css' %}">  
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 </head>
 
@@ -19,13 +21,24 @@
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h3>Sinh viên {{firstname}} {{lastname}}</h3>
+                <h3>Giảng viên <br> {{firstname}} {{lastname}}</h3>
             </div>
             <ul class="list-unstyled components">
-                <li class="active"> <a href="{% url 'user_student:main_screen' %}">Trang thông tin</a></li>
-                <li class="active"> <a href="{% url 'user_student:student_change_information' %}" >Chỉnh sửa thông tin</a></li>
-                <li class="active"> <a href="{% url 'user_student:show_student' %}">Các bài thi cũ</a> </li>
-                <li class="active"> <a href="{% url 'user_student:new-exam' %}">Bắt đầu thi mới</a> </li>
+                <li class="active"> <a href="{% url 'user_teacher:main_screen' %}">Trang thông tin</a></li>
+                <li class="active"> <a href="{% url 'user_teacher:teacher_change_information' %}" >Chỉnh sửa thông tin</a></li>
+                <li class="active"> <a href="{% url 'user_teacher:show_student' %}">Sinh viên</a> </li>
+                <li class="active">
+                  <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Tạo câu hỏi</a>
+                  <ul class="collapse list-unstyled" id="homeSubmenu">
+                      <li>
+                        <a href="{% url 'user_teacher:add_new_question' %}">Tạo 1 câu hỏi</a>
+                      </li>
+                      <li>
+                          <a href="#">Tạo nhiều câu hỏi</a>
+                      </li>
+                  </ul>
+              </li>
+                <li class="active"> <a href="{% url 'user_teacher:question_bank' %}">Ngân hàng câu hỏi</a> </li>
                 <li class="active"> <a href="{% url 'user_admin:logout' %}">Đăng xuất</a> </li>
             </ul>  
         </nav>
@@ -40,12 +53,13 @@
                     <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fas fa-align-justify"></i>
                     </button>
-                   
-                    <b><a> {{firstname}} {{lastname}} - {{MSSV}} </a></b>
+                    <b><a><i style='font-size:24px' class='fas'>&#xf51c;</i>
+                        {{firstname}} {{lastname}} - {{MSGV}} </a></b>
                 </div>
             </nav>
-
-                   
+            {%block content%}
+            {%endblock%}
+            
                     
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -60,6 +74,9 @@
                 $('#sidebar').toggleClass('active');
             });
         });
+
+
+       
     </script>
 </body>
 <footer class="bg-light text-center text-lg-start">

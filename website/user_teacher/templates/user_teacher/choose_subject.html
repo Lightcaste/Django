@@ -1,0 +1,10 @@
+{% extends 'user_teacher/base.html' %}
+
+{% block content %}
+    <h3>Chọn môn thi để xem điểm</h3>
+    <form action="" method="post">
+        {% csrf_token %}
+        <h2>Môn thi: {{ fm.ID_Subject }}</h2>
+        <input type="submit" value="Chọn">
+    </form>
+{% endblock %}

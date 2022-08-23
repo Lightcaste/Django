@@ -1,0 +1,14 @@
+{% extends 'user_student/base.html' %}
+
+{% block content %}
+<title> Kiểm tra thông tin</title>
+    <h3>Kiểm tra thông tin</h3>
+        <h2>Họ và Tên: {{ firstname }} {{ lastname }}</h2>
+        <h2>MSSV: {{ MSSV }} </h2>
+        <h2>Bài thi môn: {{ Subj }} </h2>
+        <h2>Ngày thi: {{ DateExam }} </h2>
+        <h2>Mã đề thi: {{IDexam.id}} </h2>
+        <h2>Điểm: {{point}}</h2>
+
+        <h2><a href="{% url 'user_student:main_screen' %}">Xác nhận và kết thúc bài thi</a></h2>
+{% endblock %}

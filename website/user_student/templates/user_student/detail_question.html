@@ -1,0 +1,17 @@
+{% extends 'user_student/base.html' %}
+
+{% block content %}
+<title>Mã câu {{qs.id}} </title>
+    {% if qs %}
+        <h1>Mã đề: {{IDexam.id}}</h1>
+        <h1>[ID:{{qs.id}}] {{qs.Question_Detail}}</h1>
+            <img class="image_question" src="{{qs.Question_Image}}">
+                <form action="{% url 'user_student:grade' IDexam.id qs.id %}" method="post">
+                    {% csrf_token %}
+                    {% for item in a %}
+                        <h2><input type="radio" value="{{ item.id }}" name="choice">{{ item.Question_Answer}}</h2>
+                    {% endfor %}
+                        <h2><input type="submit" value="Đồng ý"></h2>
+                </form>
+    {% endif %}
+{% endblock %}

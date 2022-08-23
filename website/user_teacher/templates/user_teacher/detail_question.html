@@ -1,0 +1,14 @@
+{% extends 'user_teacher/base.html' %}
+
+{% block content %}
+    {% if qs %}
+        <h1>[ID:{{qs.id}}] {{qs.Question_Detail}}</h1>
+            <img class="image_question" src="{{qs.Question_Image}}">
+                {% for item in a %}
+                    <h2>Đáp án: {{ item.Question_Answer}}</h2>
+                {% endfor %}
+                {% for item in ca %}
+                    <h2>Đáp án đúng: {{item.Correct_Answer}}</h2>
+                {% endfor %}
+    {% endif %}
+{% endblock %}

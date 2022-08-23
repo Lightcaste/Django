@@ -44,6 +44,8 @@ class Subject(models.Model):
         Subject_Name=models.TextField(max_length=255)
         class Meta:
             db_table='subject'
+        def __str__(self):
+            return self.Subject_Name
 # Ngân hàng câu hỏi
 class QuestionBank(models.Model):
         Question_Detail=models.TextField(max_length=99999)
@@ -51,12 +53,16 @@ class QuestionBank(models.Model):
         ID_Subject=models.ForeignKey(Subject, on_delete=models.CASCADE)
         class Meta:
             db_table='question_bank'
+        def __str__(self):
+            return self.Question_Detail
 # Bảng đáp án câu hỏi
 class QuestionAnswer(models.Model):
         ID_Question=models.ForeignKey(QuestionBank, on_delete=models.CASCADE)
         Question_Answer=models.TextField(max_length=99999)
         class Meta:
             db_table='question_answer'
+        def __str__(self):
+            return self.Question_Answer
 # Bảng đáp án đúng
 class CorrectAnswer(models.Model):
         ID_Question=models.ForeignKey(QuestionBank, on_delete=models.CASCADE)

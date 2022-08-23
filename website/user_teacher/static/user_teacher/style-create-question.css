@@ -268,3 +268,34 @@ ul.CTAs a {
     width: 400px;
     text-align: center;
   }
+
+  table{
+    border:solid blue;
+    counter-reset: tableCount;    
+  }
+  
+  .counterCell:before {              
+    content: counter(tableCount); 
+    counter-increment: tableCount; 
+  }
+  td{
+    height: 70px;
+    text-align:center;
+  }
+  th{
+    height: 50px;
+    text-align:center;
+  }
+  tr{
+    
+    text-align:center;
+  }
+
+  input[type=email],input[type=text]{
+    border:1px solid blue;
+    border-radius: 25px;
+    padding:10px;
+    margin: 5px;
+    width: 400px;
+    text-align: center;
+ }

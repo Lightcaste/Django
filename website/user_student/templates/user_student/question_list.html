@@ -1,0 +1,14 @@
+{% extends 'user_student/base.html' %}
+
+{% block content %}
+<title>Đề thi số {{IDexam.id}}</title>
+    <h3>Mã đề thi {{IDexam.id}}</h3>
+    {% if listquest %}
+       {% for item in listquest %}
+        <p>[ID:{{item.ID_Question_id}}] <a class="q" href="{% url 'user_student:detailview' item.ID_Exam_id item.ID_Question_id  %}">{{ item.Question_Detail}}</a></p>
+        {% endfor %}
+        <h2><a href="{% url 'user_student:end_exam' IDexam.id  %}">Xác nhận và kết thúc bài thi</a></h2>
+    {% else %}
+        <h3 style="color: red;">Không có dữ liệu câu hỏi nào !!!</h3>
+    {% endif %}
+{% endblock %}

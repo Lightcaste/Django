@@ -1,0 +1,64 @@
+{% extends 'user_student/base.html' %}
+
+{% block content %}
+<title>Các bài thi cũ</title>
+
+<div>
+      <center>
+        <form action="" method="POST">
+          {% csrf_token %}
+      <input type="text" name="Search" placeholder="Nhập tên môn thi để tìm kiếm" />
+      <button type="submit" value="Search"><b>Tìm kiếm</b></button> <br><br>
+        </form>
+      <table border ="1" id="table" cellspacing="0" width="1200" >
+      
+        <tr>
+            <th>STT</th>
+            <th>Mã đề thi</th>
+            <th>Tên môn thi</th>
+            <th>Ngày thi</th>
+            <th>Điểm</th>
+        </tr>
+        {% for getdata in SD %}
+       
+        <center>
+        <tr>
+            <td class="counterCell"></td>
+            <td>{{getdata.ID_Exam_id}}</td>
+            <td>{{getdata.exam_subject}}</td>
+            <td>{{getdata.Date}}</td>
+            <td>{{getdata.Grade}}</td>
+          
+        </tr>
+    </center>
+        {% endfor %}
+    </table>    
+    <br><br>
+   
+  </div>
+  <nav aria-label="Page navigation example">
+    {% if SD.has_other_pages %}
+      <ul class="pagination">
+        {% if SD.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page={{ SD.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+          <li class="page-link"><span>&laquo;</span></li>
+        {% endif %}
+        {% for i in SD.paginator.page_range %}
+          {% if SD.number == i %}
+            <li class="page-link"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+          {% else %}
+          <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+          {% endif %}
+        {% endfor %}
+        {% if SD.has_next %}
+           <li class="page-item"><a class="page-link" href="?page={{ SD.next_page_number }}">&raquo;</a></li>
+        {% else %}
+          <li class="page-link"><span>&raquo;</span></li>
+        {% endif %}
+      </ul>
+    {% endif %}
+  </nav>
+</center>
+
+{% endblock %}

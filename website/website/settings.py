@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'user_admin',
     'user_teacher',
     'user_student',
+    
    
 
 ]
@@ -139,7 +140,7 @@ AUTH_USER_MODEL='user_admin.MyUser'
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Ho_Chi_Minh'
 
 USE_I18N = True
 

@@ -16,6 +16,7 @@ Including another URLconf
 from cgitb import html
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     # main screen
@@ -30,5 +31,7 @@ urlpatterns = [
     path('userTeacher/', include ('user_teacher.urls')),
     #user_student
     path('userStudent/', include ('user_student.urls')),
+   
+
 ]
     
