@@ -49,7 +49,7 @@ class Subject(models.Model):
 # Ngân hàng câu hỏi
 class QuestionBank(models.Model):
         Question_Detail=models.TextField(max_length=99999)
-        Question_Image=models.TextField(max_length=99999999, default=None)
+        Question_Image=models.TextField(max_length=99999, null=True, default=None)
         ID_Subject=models.ForeignKey(Subject, on_delete=models.CASCADE)
         class Meta:
             db_table='question_bank'

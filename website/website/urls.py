@@ -31,10 +31,7 @@ urlpatterns = [
     path('userTeacher/', include ('user_teacher.urls')),
     #user_student
     path('userStudent/', include ('user_student.urls')),
-    #import csv file
+    #upload file CSV
     path('upload_question_csv/',include('upload_question_csv.urls')),
-
-   
-
 ]
     

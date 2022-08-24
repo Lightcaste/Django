@@ -281,7 +281,6 @@ class print_exam(LoginRequiredMixin, View):
     def post(self, request):
 
         username = request.user.username
-
         IDexam= request.POST['IDexam']
         exam=Exam.objects.get(pk=IDexam)
         userexam=exam.User_Student_id
@@ -299,7 +298,6 @@ class print_exam(LoginRequiredMixin, View):
                 q2d.append(q1d)
 
             data=Students_Answer.objects.filter(ID_Exam_id=IDexam)
-
             g = Grade.objects.get(ID_Exam=IDexam)
             point = g.Grade
             firstname = g.first_name

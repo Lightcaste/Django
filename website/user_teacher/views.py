@@ -159,7 +159,7 @@ class add_new_question(LoginRequiredMixin, View):
             NewAnswer.save()
 
 
-            return redirect('user_teacher:main_screen')
+            return redirect('user_teacher:add_new_question')
         else:
             return HttpResponse('Ban nhap sai du lieu roi')
 
