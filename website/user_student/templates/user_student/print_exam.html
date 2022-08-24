@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mã đề {{IDexam}}</title>
+</head>
+<body>
+    <h2>Họ và Tên: {{ firstname }} {{ lastname }} | MSSV: {{ MSSV }} </h2>
+    <h2>Bài thi môn: {{ Subj }} | Ngày thi: {{ DateExam }} </h2>
+    <h2>Mã đề thi: {{IDexam}} | Điểm: {{point}}</h2>
+    <h2>------------------------------------------------------------------------------------------</h2>
+    {% if data %}
+
+       {% for item in data %}
+        <p>[ID:{{item.ID_Question_id}}] {{ item.Question_Detail}}</p>
+                <!--{%for j in q2d.0%}
+                  <p>Đáp án: {{j}}</p>
+                {% endfor %}-->
+
+        {% endfor %}
+        <h3>Đáp án của mỗi câu hỏi dời lên từng câu hỏi sẽ được update trong bản cập nhật sau, chúng tôi xin lỗi vì sự ngu dốt này</h3>
+        {% for i in q2d %}
+        <h3>************</h3>
+        {% for j in i %}
+        <p>Đáp án: {{j}}</p>
+        {% endfor %}
+        {% endfor %}
+
+        <button onclick="window.print()">In đề thi</button>
+    {% else %}
+        <h3 style="color: red;">Không có dữ liệu câu hỏi nào !!!</h3>
+    {% endif %}
+</body>
+</html>

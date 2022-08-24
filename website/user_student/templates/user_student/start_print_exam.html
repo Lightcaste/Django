@@ -1,0 +1,11 @@
+{% extends 'user_student/base.html' %}
+
+{% block content %}
+    <h3>In đề thi, vui lòng chọn mã đề thi cần in </h3>
+    <h3>Lưu ý: Mã đề thi đó phải là mã đề bạn từng làm !!! Xem các mã đề thi từng làm trong mục 'Các bài thi cũ'</h3>
+    <form action="" method="post">
+        {% csrf_token %}
+        <h2>Mã đề cần in: <input type="number" name="IDexam"></h2>
+        <input type="submit" value="Thêm">
+    </form>
+{% endblock %}

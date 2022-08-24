@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
-
+import os 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -51,8 +51,7 @@ INSTALLED_APPS = [
     'user_admin',
     'user_teacher',
     'user_student',
-    
-   
+    'upload_question_csv',
 
 ]
 
@@ -71,7 +70,7 @@ ROOT_URLCONF = 'website.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [], #thêm vào 'templates'
+        'DIRS': [os.path.join(BASE_DIR,"templates")], #thêm vào 'templates'
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -4,8 +4,8 @@
     <h3>Chọn môn thi và số câu để bắt đầu bài thi mới</h3>
     <form action="" method="post">
         {% csrf_token %}
-        <h2>Môn thi: {{ fm.ID_Subject }}</h2>
-        <h2>Số câu: {{fm.number_question}}</h2>
-        <input type="submit" value="Chọn">
+        <h2>Môn thi: <select class="box" placeholder= ""{{ fm.ID_Subject }}
+        <h2>Số câu: <input class="box"  {{fm.number_question}}</h2>
+        <center><input class="box"type="submit" value="Chọn"></center><br>
     </form>
 {% endblock %}

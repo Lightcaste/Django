@@ -1,6 +1,6 @@
 from django.urls import path
 from .import views
-from .views import edit_infor,start_new_exam
+from .views import *
 
 
 app_name='user_student'
@@ -13,5 +13,7 @@ urlpatterns=[
     path('grade/<int:id>/<int:ID_Question_id>/',views.grade,name='grade'),
     path('end_exam/<int:id>',views.end_exam,name='end_exam'),
     path('history_exam/',views.history_exam,name='history_exam'),
+    path('print_exam/',print_exam.as_view(),name='print_exam'),
+
 
 ]

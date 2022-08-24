@@ -1,0 +1,11 @@
+{% extends 'user_teacher/base.html' %}
+
+{% block content %}
+    <h3>Tạo nhiều câu hỏi</h3>
+    <h2>Bước 1: Bấm vào <a href="http://127.0.0.1:8000/admin/upload_question_csv/questionbankcsv/upload-csv/">tại đây</a> để upload file csv chứa các câu hỏi cần tạo</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        <h2>Bước 2: Số câu hỏi trong file csv vừa upload: <input class='box' type="number" name="NumQuestion"></h2><br>
+       <center><input class='box' type="submit" value="Hoàn tất quá trình"></center> 
+    </form>
+{% endblock %}

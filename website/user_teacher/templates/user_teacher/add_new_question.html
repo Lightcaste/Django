@@ -1,5 +1,4 @@
 {% extends 'user_teacher/base.html' %}
-{% load widget_tweaks %}
 
 
 {% block content %}
@@ -8,18 +7,17 @@
     <h3>Tạo câu hỏi mới</h3>
     <form action="" method="post">
         {% csrf_token %}
-        <h2>Môn học: {{ nq.ID_Subject }}</h2>
-        <h2>Chi tiết câu hỏi: <input type= "text" class="box" rows="10" cols="10" value={{ nq.Question_Detail }}  </h2>
+        <h2>Môn học:  <select class="box" placeholder= "" {{ nq.ID_Subject }}
 
+        <h2> Chi tiết câu hỏi <input id='area' class="box"  {{ nq.Question_Detail }} 
 
-        <h2>Hình ảnh: {{ nq.Question_Image }}</h2>
+        <h2>Hình ảnh: <input class="box"  {{ nq.Question_Image }}
         <h2>Đáp án A: <input type="text" name="dapan1"></h2>
         <h2>Đáp án B: <input type="text" name="dapan2"></h2>
         <h2>Đáp án C: <input type="text" name="dapan3"></h2>
         <h2>Đáp án D: <input type="text" name="dapan4"></h2>
-        <h2 type ="text">Đáp án đúng: {{ nca.Correct_Answer }}</h2>
-        {% render_field form.Correct_Answer class="input" placeholder="Thành gà" %}
+        <h2>Đáp án đúng: <input class="box" {{ nca.Correct_Answer }}
 
-        <input type="submit" value="Thêm">
+        <center><input class="box"type="submit" value="Thêm"></center><br>
     </form>
 {% endblock %}

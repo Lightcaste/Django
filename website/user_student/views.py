@@ -262,3 +262,50 @@ def history_exam(request):
         SD = paginator.get_page(page_number)
         return render(request, 'user_student/history_exam.html', {'SD' : SD}|{'lastname':lastname}|{'firstname':firstname}|{'MSSV':MSSV}|{'username':username})
 
+
+class print_exam(LoginRequiredMixin, View):
+    login_url = 'login:login'
+    
+    def get(self, request):
+        role=request.user.role
+    
+        if role != 'S':
+            return redirect('user_admin:logout')
+        else:
+            firstname = request.user.first_name
+            lastname = request.user.last_name
+            MSSV=request.user.IDnumber
+
+            return render(request,'user_student/start_print_exam.html',{'firstname':firstname}|{'lastname':lastname}|{'MSSV':MSSV})
+
+    def post(self, request):
+
+        username = request.user.username
+
+        IDexam= request.POST['IDexam']
+        exam=Exam.objects.get(pk=IDexam)
+        userexam=exam.User_Student_id
+        if userexam != username:
+            return HttpResponse("Đây là bài kiểm tra của tài khoản khác, bạn ko được quyền truy cập mã đề thi này !")
+        else:
+            NumQuestion=exam.number_question
+            IDquestion_list = Students_Answer.objects.filter(ID_Exam_id=IDexam)
+            IDquestion = [e.get('ID_Question_id') for e in IDquestion_list.values("ID_Question_id")]
+           
+            q2d=[]
+            for a in range (0,NumQuestion):
+                answer_list = QuestionAnswer.objects.filter(ID_Question_id=IDquestion[a])
+                q1d = [e.get('Question_Answer') for e in answer_list.values("Question_Answer")]
+                q2d.append(q1d)
+
+            data=Students_Answer.objects.filter(ID_Exam_id=IDexam)
+
+            g = Grade.objects.get(ID_Exam=IDexam)
+            point = g.Grade
+            firstname = g.first_name
+            lastname = g.last_name
+            IDnumber = g.MSSV
+            ids = g.exam_subject
+            d = g.Date
+
+            return render(request,'user_student/print_exam.html',{'data':data}|{'q2d':q2d}|{'point':point}|{'MSSV':IDnumber}|{'Subj':ids} | {'IDexam':IDexam}|{'DateExam':d}|{'firstname':firstname}|{'lastname':lastname})
